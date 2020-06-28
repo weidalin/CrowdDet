@@ -2,7 +2,8 @@ import os
 import cv2
 import torch
 import numpy as np
-
+import sys
+sys.path.insert(0, '../lib')
 from utils import misc_utils
 
 class CrowdHuman(torch.utils.data.Dataset):
@@ -32,8 +33,10 @@ class CrowdHuman(torch.utils.data.Dataset):
         else:
             if_flap = False
         # image
-        image_path = os.path.join(self.config.image_folder, record['ID']+'.png')
+        image_path = os.path.join(self.config.image_folder, record['ID']+'.jpg')
+        # print("CrowdHuman.py....36l: image_path:", image_path)
         image = misc_utils.load_img(image_path)
+        # print("CrowdHuman.py....38l: image:", image)
         image_h = image.shape[0]
         image_w = image.shape[1]
         if if_flap:
